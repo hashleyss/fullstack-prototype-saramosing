@@ -1,4 +1,4 @@
-/* ── ALL CONTENT PAGES CENTERED (except home) ─────── */
+/* ── SARAMOSING ASHLEY R. MY CSS STYLE OR FULLSTACK PORJECT------*/
 .page {
   display: none;
 }
@@ -19,7 +19,6 @@
   display: flex !important;
 }
 
-/* Home page specific - fills viewport */
 #home-page {
   min-height: calc(100vh - 56px);
   display: none;
@@ -29,7 +28,6 @@
   display: block !important;
 }
 
-/* ── AUTH PAGES (login / register / verify) ────────── */
 .auth-page .auth-card {
   width: 100%;
   max-width: 480px;
@@ -53,14 +51,12 @@
 
 .auth-card h4 { margin-bottom: 1.25rem; font-weight: 600; }
 
-/* ── CORE VISIBILITY RULES ──────────────────────────── */
 body.not-authenticated .role-logged-in  { display: none !important; }
 body.authenticated     .role-logged-out { display: none !important; }
 
 .role-admin { display: none; }
 body.is-admin .role-admin { display: block !important; }
 
-/* ── BASE ───────────────────────────────────────────── */
 body {
   background: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -68,7 +64,6 @@ body {
   color: #212529;
 }
 
-/* ── NAVBAR ─────────────────────────────────────────── */
 .navbar { padding: 0.6rem 1.5rem; }
 
 .navbar-brand {
@@ -86,16 +81,12 @@ body {
 }
 .nav-link:hover { color: #fff !important; }
 
-/* dropdown toggle stays on one line */
 .dropdown .nav-link { white-space: nowrap; }
 
-/* Logout in red */
 .dropdown-item.text-danger { color: #dc3545 !important; }
 
-/* ── MAIN CONTENT ───────────────────────────────────── */
 main { max-width: 100%; }
 
-/* ── HOME NOTE BOX ──────────────────────────────────── */
 .home-note {
   background: #e8f6f6;
   border: 1px solid #b2dfdf;
@@ -107,7 +98,6 @@ main { max-width: 100%; }
 }
 .home-note code { color: #c0392b; }
 
-/* ── INLINE FORM BOX ────────────────────────────────── */
 .form-box {
   border: 1px solid #dee2e6;
   border-radius: 6px;
@@ -115,7 +105,6 @@ main { max-width: 100%; }
   background: #fff;
 }
 
-/* ── FORM CONTROLS ──────────────────────────────────── */
 .form-control, .form-select {
   border-radius: 4px;
   font-size: 0.875rem;
@@ -127,21 +116,17 @@ main { max-width: 100%; }
 }
 .form-label { font-size: 0.85rem; margin-bottom: .3rem; }
 
-/* ── TABLES ─────────────────────────────────────────── */
 .table { font-size: 0.875rem; }
 .table thead th { font-weight: 600; }
 
-/* ── BUTTONS ────────────────────────────────────────── */
 .btn { font-size: 0.85rem; border-radius: 5px; }
 .btn-primary  { background: #0d6efd; border-color: #0d6efd; }
 .btn-success  { background: #198754; border-color: #198754; }
 
-/* Edit / Reset / Delete action buttons */
 .btn-action-edit   { font-size: 0.78rem; padding: .2rem .55rem; border-radius: 4px; }
 .btn-action-reset  { font-size: 0.78rem; padding: .2rem .55rem; border-radius: 4px; color: #0d6efd; border-color: #0d6efd; }
 .btn-action-delete { font-size: 0.78rem; padding: .2rem .55rem; border-radius: 4px; color: #dc3545; border-color: #dc3545; }
 
-/* ── PROFILE CARD ───────────────────────────────────── */
 .profile-card {
   border: 1px solid #dee2e6;
   border-radius: 6px;
@@ -151,21 +136,17 @@ main { max-width: 100%; }
 .profile-card h5 { font-weight: 600; margin-bottom: .75rem; }
 .profile-card p  { margin-bottom: .4rem; font-size: .9rem; }
 
-/* ── VERIFIED CHECKMARK ─────────────────────────────── */
 .verified-yes { color: #198754; font-size: 1rem; }
 .verified-no  { color: #6c757d; }
 
-/* ── REQUEST ITEMS ──────────────────────────────────── */
 .req-item-row { display: flex; gap: .5rem; margin-bottom: .4rem; }
 .req-item-row input[type="text"]   { flex: 1; }
 .req-item-row input[type="number"] { width: 70px; }
 .btn-add-item   { width: 34px; padding: .2rem; font-size: 1rem; border-radius: 4px; color: #6c757d; border: 1px solid #ced4da; background: #fff; }
 .btn-remove-item{ width: 34px; padding: .2rem; font-size: .85rem; border-radius: 4px; color: #dc3545; border: 1px solid #dc3545; background: #fff; }
 
-/* ── MODAL ──────────────────────────────────────────── */
 .modal-content { border-radius: 8px; }
 
-/* ── STATUS BADGES ──────────────────────────────────── */
 .badge-pending  { background: #ffc107; color: #000; padding: .25rem .55rem; border-radius: 4px; font-size:.78rem; }
 .badge-approved { background: #198754; color: #fff; padding: .25rem .55rem; border-radius: 4px; font-size:.78rem; }
 .badge-rejected { background: #dc3545; color: #fff; padding: .25rem .55rem; border-radius: 4px; font-size:.78rem; }
