@@ -1,0 +1,298 @@
+<!--*SARAMOSING ASHLEY R. FULL-STACK HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full-Stack App (Student Build)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="not-authenticated">
+
+<!-- MY NAVBAR @SARAMOSING  -->
+<nav class="navbar navbar-dark bg-dark px-4 py-2">
+  <a class="navbar-brand fw-semibold" href="#/" onclick="navigateTo('#/')">Full-Stack App(Ashley R.Saramosing)</a>
+
+  <div class="ms-auto d-flex flex-column align-items-end role-logged-out">
+    <a class="nav-link text-white-50 py-0 lh-lg" href="#/login"   onclick="navigateTo('#/login')">Login</a>
+    <a class="nav-link text-white-50 py-0 lh-lg" href="#/register" onclick="navigateTo('#/register')">Register</a>
+  </div>
+
+  <!--THIS IS FOR MY DROPDOWNS IN ADMIN PART @SARAMOSING -->
+  <div class="ms-auto role-logged-in dropdown">
+    <a class="nav-link text-white-50 dropdown-toggle" href="#" id="userMenu"
+       data-bs-toggle="dropdown" aria-expanded="false">
+      <span id="nav-username">Admin</span>
+      </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+      <li><a class="dropdown-item" href="#/profile"  onclick="navigateTo('#/profile')">Profile</a></li>
+      <li><a class="dropdown-item role-admin" href="#/employees"   onclick="navigateTo('#/employees')">Employees</a></li>
+      <li><a class="dropdown-item role-admin" href="#/accounts"    onclick="navigateTo('#/accounts')">Accounts</a></li>
+      <li><a class="dropdown-item role-admin" href="#/departments" onclick="navigateTo('#/departments')">Departments</a></li>
+      <li><a class="dropdown-item" href="#/requests"  onclick="navigateTo('#/requests')">My Requests</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item text-danger" href="#" id="logout-btn">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- THESE ARE FOR MY PAGES @SARAMOSING -->
+<main class="px-4 pt-4">
+
+  <!-- MY HOME PAGE @SARAMOSING -->
+  <section id="home-page" class="page active">
+    <h2 class="fw-bold">Welcome to Full-Stack App</h2>
+    <p class="text-muted">A static prototype before backend integration. Simulates:</p>
+    <ul>
+      <li>Email registration + fake verification</li>
+      <li>Login with JWT-like token simulation</li>
+      <li>Role-based UI (Admin/User)</li>
+      <li>CRUD for Employees, Departments, Requests</li>
+    </ul>
+    <div class="home-note mb-3">
+      ⚠️ <strong>Note:</strong> All data is stored in <code>localStorage</code>. Refresh to reset.
+    </div>
+    <div>
+      <button class="btn btn-primary" onclick="navigateTo('#/register')">Get Started →</button>
+    </div>
+  </section>
+
+  <!-- PAGE TO REGISTER @SARAMOSING -->
+  <section id="register-page" class="page auth-page">
+    <div class="auth-card">
+      <h4 class="mb-3">Register Account</h4>
+      <form id="register-form">
+        <div class="mb-3">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" id="reg-firstname" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="reg-lastname" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="reg-email" required>
+        </div>
+        <div class="mb-4">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" id="reg-password" minlength="6" required>
+        </div>
+        <button type="submit" class="btn btn-success me-2">Sign Up</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="navigateTo('#/')">Cancel</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- TO VERIFY EMAIL AFTER USER REGISTERS @SARAMOSING -->
+  <section id="verify-email-page" class="page auth-page">
+    <div class="auth-card">
+      <h4 class="mb-3">Verify Your Email</h4>
+      <div class="alert alert-success" id="verify-msg">
+        ✅ A verification link has been sent to <span id="verify-email-display"></span>.
+      </div>
+      <p class="text-muted">For demo purposes, click below to simulate verification:</p>
+      <button class="btn btn-success me-2" id="simulate-verify-btn">✅ Simulate Email Verification</button>
+      <button class="btn btn-outline-secondary" onclick="navigateTo('#/login')">Go to Login</button>
+      <div id="verified-msg" class="alert alert-success mt-3 d-none">✅ Email verified! You may now log in.</div>
+    </div>
+  </section>
+
+  <!-- LOGIN PAGE @SARAMOSING -->
+  <section id="login-page" class="page auth-page">
+    <div class="auth-card">
+      <h4 class="mb-3">Login</h4>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="login-email">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="login-password">
+      </div>
+      <div id="login-error" class="alert alert-danger d-none"></div>
+      <button class="btn btn-primary me-2" id="login-btn">Login</button>
+      <button class="btn btn-outline-secondary" onclick="navigateTo('#/')">Cancel</button>
+    </div>
+  </section>
+
+  <!-- PROFILE PAGE @SARAMOSING -->
+  <section id="profile-page" class="page">
+    <div>
+      <h4 class="mb-3">My Profile</h4>
+      <div id="profile-content"></div>
+    </div>
+  </section>
+
+  <!-- THIS IS FOR EMPLOYEE DROPDOWN IN ADMIN PAGE @SARAMOSINH -->
+  <section id="employees-page" class="page">
+    <div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Employees</h4>
+        <button class="btn btn-success btn-sm" id="show-add-employee-btn">+ Add Employee</button>
+      </div>
+
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr><th>ID</th><th>Name</th><th>Position</th><th>Dept</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="employees-tbody">
+          <tr><td colspan="5" class="text-center text-muted">No employees.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- THIS IS FOR EDITIN AND ADDING EMPLOYEE INFORMATION IN ADMIN @SARAMOSINH -->
+      <div id="employee-form-box" class="form-box mt-3 d-none">
+        <p class="fw-semibold mb-3">Add/Edit Employee</p>
+        <input type="hidden" id="emp-edit-id">
+        <div class="mb-3">
+          <label class="form-label">Employee ID</label>
+          <input type="text" class="form-control" id="emp-id">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">User Email</label>
+          <input type="email" class="form-control" id="emp-email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Position</label>
+          <input type="text" class="form-control" id="emp-position">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Department</label>
+          <select class="form-select" id="emp-dept"></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Hire Date</label>
+          <input type="date" class="form-control" id="emp-hiredate">
+        </div>
+        <button class="btn btn-primary me-2" id="save-employee-btn">Save</button>
+        <button class="btn btn-secondary" id="cancel-employee-btn">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- THIS IS MY DEPARTMENT IN ADMIN DROPWODN @SARAMOSING -->
+  <section id="departments-page" class="page">
+    <div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Departments</h4>
+        <button class="btn btn-success btn-sm" onclick="alert('Add Department – not implemented')">+ Add Department</button>
+      </div>
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr><th>Name</th><th>Description</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="departments-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- THIS IS TO MANAGE ACCOUNTS IN ADMIN PART @SARAMOSING -->
+  <section id="accounts-page" class="page">
+    <div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Accounts</h4>
+        <button class="btn btn-success btn-sm" id="show-add-account-btn">+ Add Account</button>
+      </div>
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr><th>Name</th><th>Email</th><th>Role</th><th>Verified</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="accounts-tbody"></tbody>
+      </table>
+
+      <!-- TO EDIT/ADD ACCOUNT IN ADMIN PART @SARAMOSING -->
+      <div id="account-form-box" class="form-box mt-3 d-none">
+        <p class="fw-semibold mb-3">Add/Edit Account</p>
+        <input type="hidden" id="acc-edit-id">
+        <div class="mb-3">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-control" id="acc-firstname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="acc-lastname">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" id="acc-email">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" id="acc-password">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Role</label>
+          <select class="form-select" id="acc-role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="acc-verified">
+          <label class="form-check-label" for="acc-verified">Verified</label>
+        </div>
+        <button class="btn btn-primary me-2" id="save-account-btn">Save</button>
+        <button class="btn btn-secondary" id="cancel-account-btn">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- THIS IS FOR REQUESTS DROPDOWN OPTION IN ADMIN PART @SARAMOSING -->
+  <section id="requests-page" class="page">
+    <div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">My Requests</h4>
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#requestModal">+ New Request</button>
+      </div>
+      <div id="requests-content">
+        <p class="text-muted">You have no requests yet.</p>
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#requestModal">Create One</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--FOR NEW REQUEST @SARAMOSING -->
+<div class="modal fade" id="requestModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-semibold">New Request</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Type</label>
+          <select class="form-select" id="req-type">
+            <option value="Equipment">Equipment</option>
+            <option value="Leave">Leave</option>
+            <option value="Resources">Resources</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Items</label>
+          <div id="req-items-container"></div>
+        </div>
+        <button class="btn btn-primary" id="submit-request-btn">Submit Request</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THIS IS FOR TOAST NOTIFICATIONS FEATURE @SARAMOSING -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+  <div id="toast" class="toast align-items-center border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toast-body"></div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
